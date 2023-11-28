@@ -44,6 +44,6 @@ if [[ $? != 0 ]]; then
 	exit
 fi
 
-if [[ $PRINT_PB != 1 ]]; then
+if [[ $PRINT_PB == 1 ]]; then
 	cat ${pkg}/PKGBUILD
 fi
