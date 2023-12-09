@@ -53,7 +53,8 @@ fi
 
 for pkg in $pkgs; do
 	git -C ${pkg} pull >/dev/null 2>&1 && echo "$pkg is up to date." ||
-		for repo in ${SYNCPKG_REPOS//:/ }; do
+		[[ -z $SYNCPKG_REPOS ]] && echo "No repos set in SYNCPKG_REPOS variable" && exit ||
+		for repo in ${SYNCPKG_REPOS//;/ }; do
 			git clone $repo/${pkg}.git && break
 		done
 	if [[ $? != 0 ]]; then
